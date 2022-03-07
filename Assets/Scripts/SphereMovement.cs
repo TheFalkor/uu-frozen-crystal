@@ -43,6 +43,8 @@ public class SphereMovement : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         OnValidate();
+
+        Cursor.visible = false;
     }
 
     void Update()
@@ -70,6 +72,9 @@ public class SphereMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (PauseManager.isPaused)
+            return;
+
         UpdateState();
         AdjustVelocity();
         if (desiredJump)
