@@ -29,6 +29,8 @@ public class OrbitCamera : MonoBehaviour
     float lastManualRotationTime;
     Camera regularCamera;
 
+    public float Sensitivity { get => rotationSpeed; set => rotationSpeed = value; }
+
     Vector3 CameraHalfExtents
     {
         get

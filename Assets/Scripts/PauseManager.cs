@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
@@ -8,11 +9,17 @@ public class PauseManager : MonoBehaviour
 
     public GameObject pauseScreen;
 
+    public PlayerDeath playerDeath;
+    public Slider slider;
+    private OrbitCamera cam;
+
     public static bool isPaused = false;
-    
+
     void Start()
     {
-        pauseScreen.SetActive(false);   
+        pauseScreen.SetActive(false);
+        cam = GetComponent<OrbitCamera>();
+        slider.value = cam.Sensitivity;
     }
 
     
@@ -32,8 +39,7 @@ public class PauseManager : MonoBehaviour
 
     public void Respawn()
     {
-        Debug.Log("PauseManager :: Respawn script doesn't exist anymore.");
-        //Player.isbecomedying("death", true, health = 0, playerdeathenum.DIED);
+        playerDeath.Respawn();
     }
 
     public void ReturnToMenu()
@@ -46,6 +52,15 @@ public class PauseManager : MonoBehaviour
     {
         isPaused = !isPaused;
         Cursor.visible = isPaused;
+        if(isPaused)
+            Cursor.lockState = CursorLockMode.None;
+        else
+            Cursor.lockState = CursorLockMode.Locked;
         pauseScreen.SetActive(isPaused);
+    }
+
+    public void SetSensitivity(float value)
+    {
+        cam.Sensitivity = value;
     }
 }

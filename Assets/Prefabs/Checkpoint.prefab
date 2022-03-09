@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3161162363087975047}
   - component: {fileID: 5327240095857645771}
   - component: {fileID: 8659684789921114018}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoint
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdad3c87881544448bf011270e2fb3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  playerModel: {fileID: 4300002, guid: 5917c0e93d180a842b61d1ebc62a195c, type: 3}
 --- !u!65 &8659684789921114018
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4369213379221737496}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawnpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
