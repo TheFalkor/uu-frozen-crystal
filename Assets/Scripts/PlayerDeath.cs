@@ -13,7 +13,10 @@ public class PlayerDeath : MonoBehaviour
 
     private void Start()
     {
-		spawnpoint = transform;
+		GameObject t = new GameObject();
+		spawnpoint = t.transform;
+		spawnpoint.position = transform.position;
+		spawnpoint.rotation = transform.rotation;
     }
 
     private void OnTriggerEnter(Collider other)

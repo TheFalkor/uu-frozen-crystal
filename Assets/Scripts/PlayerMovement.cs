@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    public bool slidingLand = true;
     [Header("Player")]
     [SerializeField, Range(1f, 1000f)]
     float maxSpeed = 10f;
@@ -26,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     LayerMask stairsMask = -1;
     [SerializeField]
     Transform playerInputSpace = default;
+
+    public bool receiveInput = true;
 
     bool desiredJump;
     bool isSprinting;
@@ -61,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         alreadyExistsDebugShit = true;
+        transform.parent.rotation = Quaternion.Euler(0, 0, 0);
 
 
 
@@ -69,22 +73,38 @@ public class PlayerMovement : MonoBehaviour
         OnValidate();
 
         Cursor.visible = false;
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 120;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        Vector2 playerInput;
-        playerInput.x = Input.GetAxis("Horizontal");
-        playerInput.y = Input.GetAxis("Vertical");
+        Vector2 playerInput = Vector2.zero;
+        if (receiveInput)
+        {
+            playerInput.x = Input.GetAxis("Horizontal");
+            playerInput.y = Input.GetAxis("Vertical");
+        }
         playerInput = Vector2.ClampMagnitude(playerInput, 1f);
         Vector3 inputDirection = new Vector3(playerInput.x, 0f, playerInput.y);
 
-        animator.SetFloat("velocity", playerInput.magnitude);
         isSprinting = Input.GetButton("Sprint");
+
+        animator.SetFloat("velocity", playerInput.magnitude);
         animator.SetBool("isSprinting", isSprinting);
         animator.SetBool("isJumping", !OnGround);
+        var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (slidingLand)
+        {
+            if (stateInfo.IsName("BasicMotions@Jump01 - Land"))
+            {
+                playerInput *= 0.2f;
+            }
+        }     
+        else
+        {
+            receiveInput = !stateInfo.IsName("BasicMotions@Jump01 - Land");
+        }
 
         if (playerInputSpace)
         {
@@ -132,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
         stepsSinceLastGrounded++;
         stepsSinceLastJumped++;
         velocity = body.velocity;
-        if (OnGround || SnapToGround() || CheckSteepContacts())
+        if (OnGround || SnapToGround() /*|| CheckSteepContacts()*/)
         {
             if (groundContactCount > 1)
                 contactNormal.Normalize();
@@ -168,11 +188,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 jumpDirection;
         if (OnGround)
             jumpDirection = contactNormal;
-        else if (OnSteep)
-        {
-            jumpDirection = steepNormal;
-            jumpPhase = 0;
-        }
         else if (maxAirJumps > 0 && jumpPhase <= maxAirJumps)
         {
             if(jumpPhase == 0)

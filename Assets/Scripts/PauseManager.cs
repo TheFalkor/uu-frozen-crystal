@@ -9,6 +9,7 @@ public class PauseManager : MonoBehaviour
 
     public GameObject pauseScreen;
 
+    public PlayerMovement playerMovement;
     public PlayerDeath playerDeath;
     public Slider slider;
     private OrbitCamera cam;
@@ -52,10 +53,16 @@ public class PauseManager : MonoBehaviour
     {
         isPaused = !isPaused;
         Cursor.visible = isPaused;
-        if(isPaused)
+        if (isPaused)
+        {
             Cursor.lockState = CursorLockMode.None;
+            playerMovement.receiveInput = false;
+        }
         else
+        {
             Cursor.lockState = CursorLockMode.Locked;
+            playerMovement.receiveInput = true;
+        }
         pauseScreen.SetActive(isPaused);
     }
 

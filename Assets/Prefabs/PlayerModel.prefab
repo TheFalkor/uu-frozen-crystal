@@ -47,6 +47,10 @@ PrefabInstance:
       propertyPath: playerDeath
       value: 
       objectReference: {fileID: 1416411271187043075}
+    - target: {fileID: 1542035970965839524, guid: 74b1b730d31b63241920fab86496c20d, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 4338546258929963747}
     - target: {fileID: 4101663092677841921, guid: 74b1b730d31b63241920fab86496c20d, type: 3}
       propertyPath: m_Name
       value: Orbit Camera
@@ -145,6 +149,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 100120, guid: 5917c0e93d180a842b61d1ebc62a195c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400120, guid: 5917c0e93d180a842b61d1ebc62a195c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -230,20 +238,115 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!136 &6930270855053771567
-CapsuleCollider:
+--- !u!65 &5066817397914156487
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3038022377654617279}
-  m_Material: {fileID: 13400000, guid: 0e8ed4b50f22a8f4b9a57b21b5414c97, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.8
-  m_Direction: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.8, z: 0.5}
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!82 &3142200848896168259
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3038022377654617279}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c0343685686521b45ad5fa89f2af0b57, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1416411271187043075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,9 +371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf48cf2f7fbf544c903465c24ee6cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
+  slidingLand: 1
+  maxSpeed: 6
   maxAcceleration: 500
-  maxAirAcceleration: 8
+  maxAirAcceleration: 10
   sprintModifier: 1.5
   jumpHeight: 3
   maxAirJumps: 0
@@ -285,3 +389,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   playerInputSpace: {fileID: 1352541794090637957}
+  receiveInput: 1

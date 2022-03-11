@@ -674,7 +674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c03f7232909dd40802d1dc5335980b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCheckpoint: 0
 --- !u!1001 &1346425094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -696,7 +695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3038022377706164151, guid: f449d439af8a087448271da43e782ae7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.44
+      value: 108.3
       objectReference: {fileID: 0}
     - target: {fileID: 3038022377706164151, guid: f449d439af8a087448271da43e782ae7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -729,6 +728,14 @@ PrefabInstance:
     - target: {fileID: 3038022377706164151, guid: f449d439af8a087448271da43e782ae7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338546258929963747, guid: f449d439af8a087448271da43e782ae7, type: 3}
+      propertyPath: isSliding
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338546258929963747, guid: f449d439af8a087448271da43e782ae7, type: 3}
+      propertyPath: maxSlideAcceleration
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8774734815332642820, guid: f449d439af8a087448271da43e782ae7, type: 3}
